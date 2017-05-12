@@ -13,12 +13,10 @@
     <!--/>-->
 
 
-    <com.arcsoft.testpath.views.MyView2
+    <com.arcsoft.testpath.views.MyView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="#2b412b"
-        android:clickable="true"
-        android:longClickable="true"
-        android:visibility="visible" />
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:background="#ffffff"   />
 
 </RelativeLayout>

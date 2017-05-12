@@ -80,6 +80,19 @@ public class MyView extends View {
 
 
     @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+
+        mWaveY = mCenterY = 1f/8f * getHeight();
+        mCty = -1f/18f* getHeight();
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+    }
+
+    @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
@@ -103,39 +116,26 @@ public class MyView extends View {
 
         canvas.drawPath(mPath, mPaint);
 
-        if (mCtx > mWidth + 1 / 4f * mWidth) {
+        if (mCtx > mWidth + 1 / 3f * mWidth) {
             mProcessWave = false;
-        } else if (mCtx < -1 / 4 * mWidth) {
+        } else if (mCtx < -1 / 3 * mWidth) {
             mProcessWave = true;
         }
 
-        mCtx = mProcessWave ? mCtx + 10 : mCtx - 10;
+        mCtx = mProcessWave ? mCtx + 20 : mCtx - 20;
 
         if (mWaveY > mHeight) mIsEven = false;
         if (mWaveY < 0) mIsEven = true;
 
-
-        if (mIsEven) {
-            mSign = 1f;
-        } else {
-            mSign = -1f;
+        if (mCtx < mHeight) {
+            mCty += 4;
+            mWaveY += 4;
         }
-
-        float offset = mRandom.nextFloat() * 5.f;
-
-        Log.e("Randoem", "r=" + offset);
-        Log.e("WWW", "wy=" + mWaveY + " ,wY=" + mHeight);
-        mWaveY += offset * mSign;
-
-        float offset2 = mRandom.nextFloat() *100;
-
-        mCty = mWaveY + (offset > 2.5f ? offset2 * -1 : offset2 * 1);
-
-        Log.e("FFFFFF","w=" + mWaveY + " , cy=" + mCty);
 
 
         mPath.reset();
-        postInvalidateDelayed(600);
+        postInvalidate();
+//       postInvalidateDelayed(300);
 
 //        mPath.moveTo(300,300);
 //        mPath.lineTo(100,200);
