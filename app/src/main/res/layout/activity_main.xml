@@ -6,9 +6,19 @@
     android:layout_height="match_parent"
     tools:context="com.arcsoft.testpath.MainActivity">
 
-    <com.arcsoft.testpath.views.MyView
+    <!--<com.arcsoft.testpath.views.MyView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:visibility="visible"-->
+    <!--/>-->
+
+
+    <com.arcsoft.testpath.views.MyView2
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible"
-        />
+        android:layout_height="200dp"
+        android:background="#2b412b"
+        android:clickable="true"
+        android:longClickable="true"
+        android:visibility="visible" />
+
 </RelativeLayout>
